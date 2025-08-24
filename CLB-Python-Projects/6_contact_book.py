@@ -17,7 +17,7 @@ def main():
         if user_choice == '1':
             view()
         elif user_choice == '2':
-            add()
+            add() 
         elif user_choice == '3':
             remove()
         elif user_choice == '4':

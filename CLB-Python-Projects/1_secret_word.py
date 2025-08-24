@@ -6,7 +6,7 @@ playing = ''
 secret_word = 'cow'
 # any input from the user is considered as a string
 
-while True:
+while True: 
     playing =  input('Do you want to play? (yes/no) or "q" to quit: ')
 
     if playing.lower() == 'yes':
