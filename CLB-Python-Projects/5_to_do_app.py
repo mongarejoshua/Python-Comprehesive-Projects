@@ -1,40 +1,52 @@
-# to-do-list program 
 import json
 
-todo_list = ['Wake up at 6 am', 'Pray', 'Take breakfast', 'Take a shower', 'Go to the gym', 'Work on my school and personal projects'] 
-
+tasks = []
 
 def main():
     while True:
         print('--- TODO LIST MENU ---')
-        print('1. Show your tasks.')
-        print('2. Add tasks.')
+        print('1. Add tasks')
+        print('2. Show your tasks')
         print('3. Exit')
 
         choice = input('Select one option from the above(i.e 1,2,3): ')
         if choice == '1':
-            show_tasks()
-        elif choice == '2':
             add_task()
+        elif choice == '2':
+            show_tasks()
         elif choice == '3':
-            print('---Goodbye---')
+            save_task()
             break
 
+def load_tasks():
+    global tasks
+    try:
+        with open("task_list.json", "r") as file:
+            tasks = json.load(file)
+        print("Tasks Loaded successfully")
+    except FileNotFoundError:
+        print(f"The file {file} is not available")
+        
+        
 def show_tasks():
-    if len(todo_list) == 0:
-        print('Your todo list is empty. No tasks to show.\n')
+    if not tasks:
+        print("Task list is empty.")
     else:
-        print('---YOUR TASK LIST---')
-        for i, task in enumerate(todo_list, 1): #prints task number and the task
-            print(f'{i}. {task}')
-        print('\n')
+        for task in tasks:
+            print(task)
+            
 
 def add_task():
     task = input('Enter your tasks separated by a comma(no spaces after the comma): ')
-    todo_list.extend(task.split(',')) # extend() add multiple elements to a list
-    
-    print('Tasks added successfully!\n')
+    tasks.extend(task.split(',')) # extend() add multiple elements to a list
+    save_task()
+    print('Tasks added and saved successfully!\n')
 
+def save_task():
+    with open("task_list.json", "w") as file:
+        json.dump(tasks, file, indent=4)
+    
+    
 
 def delete():
     pass
@@ -44,4 +56,6 @@ def edit():
     pass
 
 
-main()
+if __name__ == "__main__":
+    load_tasks()
+    main()
