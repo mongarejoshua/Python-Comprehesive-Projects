@@ -1,6 +1,7 @@
 import random
 
-secret_words = ['apple', 'banana', 'spoon', 'plate', 'table', 'matchbox']
+word_list = ['apple', 'banana', 'spoon', 'plate', 'table', 'matchbox']
+word = random.choice(word_list).upper()
 
 hangman_art = {0: ("     ",
                    "     ",
@@ -31,7 +32,6 @@ hangman_art = {0: ("     ",
                    " / \\")
                }
 
-for key in hangman_art[6]:
-    print(key)
+print(word)
     
     
