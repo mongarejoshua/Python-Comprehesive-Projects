@@ -37,6 +37,7 @@ def magic_ball_8():
             continue
             
         response = random.choice(responses)
+        time.sleep(3)
         
         print(response) 
     
